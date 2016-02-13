@@ -1,0 +1,7 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Thu Jan 14 13:02:48 CET 2016
+neo4j-ogm-1.1.5-BETA-tests.jar>=
+neo4j-ogm-1.1.5-BETA.jar>=
+neo4j-ogm-1.1.5-BETA-javadoc.jar>=
+neo4j-ogm-1.1.5-BETA.pom>=
+neo4j-ogm-1.1.5-BETA-sources.jar>=

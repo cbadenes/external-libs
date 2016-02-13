@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>es.upm.oeg.epnoi</groupId>
+  <artifactId>epnoi-ressist</artifactId>
+  <versioning>
+    <release>0.0.4</release>
+    <versions>
+      <version>0.0.4</version>
+    </versions>
+    <lastUpdated>20160118101050</lastUpdated>
+  </versioning>
+</metadata>
