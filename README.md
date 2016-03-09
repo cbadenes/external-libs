@@ -9,7 +9,8 @@ cp -r <home>/.m2/repository/<group-id> <group-id>/
 ```
 ##### 3) Commit the changes: 
 ```xml
-git commit -m "new library" -a
+git commit -a .
+git commit -m "new library"
 git push origin mvn-repo
 ```  
 
@@ -20,7 +21,7 @@ git push origin mvn-repo
 <repositories>
     <repository>
         <id>external-libs</id>
-        <url>https://raw.github.com/epnoi/external-libs/mvn-repo/</url>
+        <url>https://raw.github.com/cbadenes/external-libs/mvn-repo/</url>
         <snapshots>
             <enabled>true</enabled>
             <updatePolicy>always</updatePolicy>
