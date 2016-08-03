@@ -1,0 +1,1428 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.librairy</groupId>
+    <artifactId>modeler-lda</artifactId>
+    <version>0.3</version>
+    <packaging>war</packaging>
+    <name>librairy modeler lda</name>
+    <description>Create Topic Models for a given domain</description>
+    <url>https://github.com/librairy/modeler-lda</url>
+    <organization>
+        <name>Ontology Engineering Group</name>
+        <url>http://www.oeg-upm.net</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+    <inceptionYear>2016</inceptionYear>
+    <scm>
+        <url>https://github.com/librairy/modeler-lda</url>
+    </scm>
+    <developers>
+        <developer>
+            <id>cbadenes</id>
+            <name>Carlos Badenes Olmedo</name>
+            <email>cbadenes at fi.upm.es</email>
+        </developer>
+    </developers>
+    <prerequisites>
+        <maven>3.0.0</maven>
+    </prerequisites>
+	<properties>
+        <docker.image.prefix>librairy</docker.image.prefix>
+
+        <!-- Project Details -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.java.version>1.8</project.java.version>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- Maven Plugins -->
+        <maven.appassembler.plugin.version>1.9</maven.appassembler.plugin.version>
+        <maven.assembly.plugin.version>2.5.5</maven.assembly.plugin.version>
+        <maven.compiler.plugin.version>3.3</maven.compiler.plugin.version>
+        <maven.jar.plugin.version>2.6</maven.jar.plugin.version>
+        <maven.site.plugin.version>0.10</maven.site.plugin.version>
+        <maven.surefire.plugin.version>2.11</maven.surefire.plugin.version>
+        <maven.war.plugin.version>2.6</maven.war.plugin.version>
+        <maven.resources.plugin.version>2.7</maven.resources.plugin.version>
+
+        <!-- Project Dependencies -->
+
+        <asm.version>5.0.4</asm.version>
+        <apache.commons.lang.version>3.0</apache.commons.lang.version>
+        <beanutils.version>1.9.2</beanutils.version>
+        <camel.euia.version>1.0.0</camel.euia.version>
+        <camel.oaipmh.version>1.0.5</camel.oaipmh.version>
+        <camel.version>2.15.2</camel.version>
+        <cloning.version>1.9.1</cloning.version>
+        <coreNlpExtensions.version>1.0</coreNlpExtensions.version>
+        <commons.lang.version>2.6</commons.lang.version>
+        <commons.pool.version>2.4.1</commons.pool.version>
+        <flexjson.version>2.0</flexjson.version>
+        <gate.version>8.1</gate.version>
+        <gate.stanford.version>1.0</gate.stanford.version>
+        <guava.version>18.0</guava.version>
+        <hadoop.version>2.6.0</hadoop.version>
+        <hector.version>1.1-3</hector.version>
+        <hibernate.version>4.3.0.Beta5</hibernate.version>
+        <httpcomponents.version>4.4</httpcomponents.version>
+        <httpclient.version>3.1</httpclient.version>
+        <jackson.version>1.9.11</jackson.version>
+        <fasterxml.jackson.version>2.4.4</fasterxml.jackson.version>
+        <javassist.version>3.12.1.GA</javassist.version>
+        <javatuples.version>1.2</javatuples.version>
+        <javax.version>1.0</javax.version>
+        <jaxb.version>2.2.11</jaxb.version>
+        <jersey.version>1.9</jersey.version>
+        <jetty.plugin.version>9.3.4.RC1</jetty.plugin.version>
+        <jetty.version>8.1.9.v20130131</jetty.version>
+        <jena.version>2.10.1</jena.version>
+        <jgrapht.version>0.9.0</jgrapht.version>
+        <junit.version>4.12</junit.version>
+        <librairy.version>0.4-SNAPSHOT</librairy.version>
+        <log4j.version>1.2.17</log4j.version>
+        <log4j.slf4j.version>1.7.14</log4j.slf4j.version>
+        <logback.version>1.1.3</logback.version>
+        <lombok.version>1.16.4</lombok.version>
+        <jsoup.version>1.8.2</jsoup.version>
+        <jwi.version>2.2.3</jwi.version>
+        <lucene.version>4.10.4</lucene.version>
+        <lz4.version>1.3.0</lz4.version>
+        <mahout.version>0.9</mahout.version>
+        <mapdb.version>1.0.7</mapdb.version>
+        <metrics.version>0.0.9</metrics.version>
+        <mockito.version>1.9.5</mockito.version>
+        <neo4j.version>2.3.2</neo4j.version>
+        <opennlp.version>1.5.3</opennlp.version>
+        <pdfbox.version>1.8.11</pdfbox.version>
+        <nvi18n.version>1.15</nvi18n.version>
+        <rabbitmq.version>3.5.6</rabbitmq.version>
+        <ressist.version>0.0.6</ressist.version>
+        <restlet.version>2.3.5</restlet.version>
+        <scala.version>2.10.6</scala.version><!-- 2.11.2 -->
+        <servlet.api.version>2.4</servlet.api.version>
+        <slf4j.version>1.7.12</slf4j.version>
+        <solr.version>5.4.0</solr.version>
+        <spark.version>1.6.1</spark.version>
+        <springboot.version>1.2.1.RELEASE</springboot.version>
+        <spring.data.commons.version>1.12.0.M1</spring.data.commons.version>
+        <spring.data.jpa.version>1.10.0.M1</spring.data.jpa.version>
+        <spring.data.cassandra.version>1.4.0.M1</spring.data.cassandra.version>
+        <spring.data.elasticsearch.version>1.4.0.M1</spring.data.elasticsearch.version>
+        <spring.data.neo4j.version>4.1.0.M1</spring.data.neo4j.version>
+        <spring.data.neo4j.ogm.version>2.0.0-M03</spring.data.neo4j.ogm.version>
+        <spring.version>4.1.9.RELEASE</spring.version>
+        <snappy.version>1.1.2</snappy.version>
+        <stanford.version>3.5.2</stanford.version>
+        <stanford.parser.version>1.0</stanford.parser.version>
+        <surefire.junit.version>2.12</surefire.junit.version>
+        <swagger.jersey.version>1.5.0</swagger.jersey.version>
+        <sweble.version>1.1.0</sweble.version>
+        <testutils.version>1.0.0</testutils.version>
+        <tomcat.version>8.0.21</tomcat.version>
+        <tomcat.jasper.version>7.0.8</tomcat.jasper.version>
+        <thrift.version>0.9.2</thrift.version>
+        <tika.version>1.7</tika.version>
+        <tudarmstadt.wikipedia.version>1.0.0</tudarmstadt.wikipedia.version>
+        <upf.version>1.2</upf.version>
+        <virtuoso.jena.version>1.0</virtuoso.jena.version>
+        <virtuoso.jdbc.version>1.0</virtuoso.jdbc.version>
+        <wdtk.version>0.4.0</wdtk.version>
+        <xml.api.version>1.4.01</xml.api.version>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Camel Workflow Libraries -->
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-core</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-spring</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-metrics</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-groovy</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-script</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-rabbitmq</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-rss</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-http</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-stream</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>es.upm.oeg.camel</groupId>
+                <artifactId>camel-oaipmh</artifactId>
+                <version>${camel.oaipmh.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>es.upm.oeg.camel</groupId>
+                <artifactId>camel-euia</artifactId>
+                <version>${camel.euia.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-saxon</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-dropbox</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+
+            <!-- Cassandra Libraries -->
+            <dependency>
+                <groupId>org.hectorclient</groupId>
+                <artifactId>hector-core</artifactId>
+                <version>${hector.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-cassandra</artifactId>
+                <version>${spring.data.cassandra.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.xerial.snappy</groupId>
+                <artifactId>snappy-java</artifactId>
+                <version>${snappy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.jpountz.lz4</groupId>
+                <artifactId>lz4</artifactId>
+                <version>${lz4.version}</version>
+            </dependency>
+
+            <!-- Elasticsearch Libraries -->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-elasticsearch</artifactId>
+                <version>${spring.data.elasticsearch.version}</version>
+            </dependency>
+
+            <!-- Graph Libraries -->
+            <dependency>
+                <groupId>org.jgrapht</groupId>
+                <artifactId>jgrapht-core</artifactId>
+                <version>${jgrapht.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-neo4j</artifactId>
+                <version>${spring.data.neo4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.neo4j</groupId>
+                <artifactId>neo4j-ogm-api</artifactId>
+                <version>${spring.data.neo4j.ogm.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.neo4j</groupId>
+                <artifactId>neo4j-ogm-core</artifactId>
+                <version>${spring.data.neo4j.ogm.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.neo4j</groupId>
+                <artifactId>neo4j-ogm-http-driver</artifactId>
+                <version>${spring.data.neo4j.ogm.version}</version>
+            </dependency>
+
+            <!-- In-Memory DB Libraries -->
+            <dependency>
+                <groupId>org.mapdb</groupId>
+                <artifactId>mapdb</artifactId>
+                <version>${mapdb.version}</version>
+            </dependency>
+
+            <!-- Json Serializers -->
+            <dependency>
+                <groupId>net.sf.flexjson</groupId>
+                <artifactId>flexjson</artifactId>
+                <version>${flexjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-core-asl</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-mapper-asl</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-jaxrs</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-jackson</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${fasterxml.jackson.version}</version>
+            </dependency>
+
+            <!-- Log Libraries -->
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>log4j-over-slf4j</artifactId>
+                <version>${log4j.slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <!-- Lucene Libraries -->
+            <dependency>
+                <groupId>org.apache.lucene</groupId>
+                <artifactId>lucene-core</artifactId>
+                <version>${lucene.version}</version>
+            </dependency>
+            <!--<dependency>-->
+            <!--<groupId>org.apache.lucene</groupId>-->
+            <!--<artifactId>lucene-analyzers</artifactId>-->
+            <!--<version>${lucene.version}</version>-->
+            <!--</dependency>-->
+            <dependency>
+                <groupId>org.apache.lucene</groupId>
+                <artifactId>lucene-analyzers-common</artifactId>
+                <version>${lucene.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.lucene</groupId>
+                <artifactId>lucene-highlighter</artifactId>
+                <version>${lucene.version}</version>
+            </dependency>
+
+            <!-- Machine Learning Libraries -->
+            <dependency>
+                <groupId>org.apache.mahout</groupId>
+                <artifactId>mahout-core</artifactId>
+                <version>${mahout.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>es.upm.oeg.epnoi</groupId>
+                <artifactId>epnoi-ressist</artifactId>
+                <version>${ressist.version}</version>
+            </dependency>
+
+            <!-- Message Broker Libraries -->
+            <dependency>
+                <groupId>com.rabbitmq</groupId>
+                <artifactId>amqp-client</artifactId>
+                <version>${rabbitmq.version}</version>
+            </dependency>
+
+            <!-- Meta Programming Libraries -->
+            <dependency>
+                <groupId>org.ow2.asm</groupId>
+                <artifactId>asm-all</artifactId>
+                <version>${asm.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${beanutils.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons.lang.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${apache.commons.lang.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.neovisionaries</groupId>
+                <artifactId>nv-i18n</artifactId>
+                <version>${nvi18n.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>${javassist.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>uk.com.robust-it</groupId>
+                <artifactId>cloning</artifactId>
+                <version>${cloning.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>${commons.pool.version}</version>
+            </dependency>
+
+            <!-- Networking Libraries -->
+
+            <dependency>
+                <groupId>commons-httpclient</groupId>
+                <artifactId>commons-httpclient</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>jsr250-api</artifactId>
+                <version>${javax.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-impl</artifactId>
+                <version>${jaxb.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-core</artifactId>
+                <version>${jaxb.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${servlet.api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-jaxb</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-restlet</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.restlet.jee</groupId>
+                <artifactId>org.restlet.ext.spring</artifactId>
+                <version>${restlet.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.thrift</groupId>
+                <artifactId>libthrift</artifactId>
+                <version>${thrift.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>${httpcomponents.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpcomponents.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpmime</artifactId>
+                <version>${httpcomponents.version}</version>
+            </dependency>
+
+            <!-- NLP Libraries -->
+            <dependency>
+                <groupId>edu.upf.taln.dri</groupId>
+                <artifactId>lib</artifactId>
+                <version>${upf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>gate-stanford</groupId>
+                <artifactId>gate-stanford</artifactId>
+                <version>${gate.stanford.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>stanford-parser</groupId>
+                <artifactId>stanford-parser</artifactId>
+                <version>${stanford.parser.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>uk.ac.gate</groupId>
+                <artifactId>gate-core</artifactId>
+                <version>${gate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.javatuples</groupId>
+                <artifactId>javatuples</artifactId>
+                <version>${javatuples.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.opennlp</groupId>
+                <artifactId>opennlp-tools</artifactId>
+                <version>${opennlp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-core</artifactId>
+                <version>${tika.version}</version>
+                <!--<classifier>jdk14</classifier>-->
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-parsers</artifactId>
+                <version>${tika.version}</version>
+                <!--<classifier>jdk14</classifier>-->
+            </dependency>
+            <dependency>
+                <groupId>org.apache.jena</groupId>
+                <artifactId>apache-jena-libs</artifactId>
+                <type>pom</type>
+                <version>${jena.version}</version>
+            </dependency>
+            <!-- Stanford Libraries -->
+            <dependency>
+                <groupId>edu.stanford.nlp</groupId>
+                <artifactId>stanford-corenlp</artifactId>
+                <version>${stanford.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>edu.stanford.nlp</groupId>
+                <artifactId>stanford-parser</artifactId>
+                <version>${stanford.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>edu.stanford.nlp</groupId>
+                <artifactId>stanford-corenlp</artifactId>
+                <version>${stanford.version}</version>
+                <classifier>models</classifier>
+            </dependency>
+            <dependency>
+                <groupId>intoxicant.analytics</groupId>
+                <artifactId>coreNlpExtensions</artifactId>
+                <version>${coreNlpExtensions.version}</version>
+            </dependency>
+
+            <!-- PDF Libraries -->
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox</artifactId>
+                <version>${pdfbox.version}</version>
+            </dependency>
+
+            <!-- Relational DB Libraries -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+
+            <!-- Scala Libraries -->
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scalap</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-compiler</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-reflect</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+
+            <!-- Solr Libraries -->
+            <dependency>
+                <groupId>org.apache.solr</groupId>
+                <artifactId>solr-solrj</artifactId>
+                <version>${solr.version}</version>
+            </dependency>
+
+            <!-- Spark Libraries -->
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-client</artifactId>
+                <version>${hadoop.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-main</artifactId>
+                <version>${hadoop.version}</version>
+            </dependency>
+
+            <!-- Spring Libraries -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-logging</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-jpa</artifactId>
+                <version>${spring.data.jpa.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-commons</artifactId>
+                <version>${spring.data.commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!-- Tomcat Libraries -->
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-catalina</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-util</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-jasper</artifactId>
+                <version>${tomcat.jasper.version}</version>
+            </dependency>
+
+            <!-- Unit tests Libraries -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${mockito.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>es.cbadenes.lab</groupId>
+                <artifactId>test-utils</artifactId>
+                <version>${testutils.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-test</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+
+            <!-- Virtuoso Libraries -->
+            <dependency>
+                <groupId>jena-virtuoso</groupId>
+                <artifactId>jena-virtuoso</artifactId>
+                <version>${virtuoso.jena.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>virtuoso-jdbc3</groupId>
+                <artifactId>virtuoso-jdbc3</artifactId>
+                <version>${virtuoso.jdbc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>virtuoso-jdbc4</groupId>
+                <artifactId>virtuoso-jdbc4</artifactId>
+                <version>${virtuoso.jdbc.version}</version>
+            </dependency>
+
+            <!-- Wikipedia Libraries -->
+            <dependency>
+                <groupId>org.sweble.wikitext</groupId>
+                <artifactId>swc-parser-lazy</artifactId>
+                <version>${sweble.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.sweble.wikitext</groupId>
+                <artifactId>swc-engine</artifactId>
+                <version>${sweble.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.tudarmstadt.ukp.wikipedia</groupId>
+                <artifactId>de.tudarmstadt.ukp.wikipedia.api</artifactId>
+                <version>${tudarmstadt.wikipedia.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.tudarmstadt.ukp.wikipedia</groupId>
+                <artifactId>de.tudarmstadt.ukp.wikipedia.parser</artifactId>
+                <version>${tudarmstadt.wikipedia.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wikidata.wdtk</groupId>
+                <artifactId>wdtk-dumpfiles</artifactId>
+                <version>${wdtk.version}</version>
+            </dependency>
+
+            <!-- WordNet Libraries -->
+            <dependency>
+                <groupId>edu.mit</groupId>
+                <artifactId>jwi</artifactId>
+                <version>${jwi.version}</version>
+            </dependency>
+
+            <!-- WS-REST Libraries -->
+            <dependency>
+                <groupId>com.sun.jersey.contribs</groupId>
+                <artifactId>jersey-spring</artifactId>
+                <version>${jersey.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-web</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-beans</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-server</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-bundle</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-client</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-json</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-jersey-jaxrs</artifactId>
+                <version>${swagger.jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-server</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-servlets</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-webapp</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-swagger</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-servlet</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+
+            <!-- XML Serializer -->
+            <dependency>
+                <groupId>xml-apis</groupId>
+                <artifactId>xml-apis</artifactId>
+                <version>${xml.api.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <!-- Internal Dependencies -->
+        <dependency>
+            <groupId>org.librairy</groupId>
+            <artifactId>librairy-boot</artifactId>
+            <version>${librairy.version}</version>
+        </dependency>
+
+		<!-- Ressist Dependency -->
+		<!--<dependency>-->
+			<!--<groupId>es.upm.oeg.epnoi</groupId>-->
+			<!--<artifactId>epnoi-ressist</artifactId>-->
+			<!--<exclusions>-->
+				<!--<exclusion>-->
+					<!--<groupId>org.slf4j</groupId>-->
+					<!--<artifactId>slf4j-log4j12</artifactId>-->
+				<!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.apache.spark</groupId>-->
+                    <!--<artifactId>spark-core_2.11</artifactId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.apache.spark</groupId>-->
+                    <!--<artifactId>spark-mllib_2.11</artifactId>-->
+                <!--</exclusion>-->
+
+			<!--</exclusions>-->
+		<!--</dependency>-->
+
+        <dependency>
+            <groupId>es.upm.oeg.epnoi</groupId>
+            <artifactId>epnoi-matching-metrics</artifactId>
+            <version>${metrics.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+        <!--<dependency>-->
+            <!--<groupId>com.datastax.spark</groupId>-->
+            <!--<artifactId>spark-cassandra-connector_2.10</artifactId>-->
+            <!--<version>1.6.0-M2</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.datastax.spark</groupId>-->
+            <!--<artifactId>spark-cassandra-connector-java_2.10</artifactId>-->
+            <!--<version>1.6.0-M1</version>-->
+        <!--</dependency>-->
+
+        <!-- Spark -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_2.10</artifactId>
+            <version>${spark.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-mllib_2.10</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
+        <!-- Spring Web -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+
+        <!-- Unit tests -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>es.cbadenes.lab</groupId>
+            <artifactId>test-utils</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.slf4j</groupId>-->
+            <!--<artifactId>log4j-over-slf4j</artifactId>-->
+        <!--</dependency>-->
+
+        <!-- Apache Camel context -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-groovy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-script</artifactId>
+        </dependency>
+
+        <!-- Camel Saxon for XPath 2.0 -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-saxon</artifactId>
+        </dependency>
+
+        <!-- Apache Camel HTTP component -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-http</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-servlet</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-metrics</artifactId>
+        </dependency>
+
+        <!-- Apache Camel Stream component -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-stream</artifactId>
+        </dependency>
+
+        <!-- Apache Camel content binding -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jackson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jaxb</artifactId>
+        </dependency>
+
+        <!-- Apache Camel Swagger -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-swagger</artifactId>
+        </dependency>
+
+        <!-- Google Guava Library -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+
+        <!-- TEST: Camel  -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- TEST: Jetty Embedded Server -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlets</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.6.2</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <finalName>modeler-lda</finalName>
+        <plugins>
+
+            <!-- Maven Test Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>${surefire.junit.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <argLine>-Xmx5024m</argLine>
+                    <includes>
+                        <include>**/*.class</include>
+                    </includes>
+                    <excludedGroups>es.cbadenes.lab.test.IntegrationTest</excludedGroups>
+                    <systemPropertyVariables>
+                        <logback.configurationFile>${basedir}/src/test/resources/logback.xml</logback.configurationFile>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+
+
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <source>${project.java.version}</source>
+                    <target>${project.java.version}</target>
+                    <compilerVersion>${project.java.version}</compilerVersion>
+                </configuration>
+            </plugin>
+
+            <!-- Github Deploy -->
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.1</version>
+                <configuration>
+                    <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <skipDeploy>true</skipDeploy>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.12</version>
+                <executions>
+                    <execution>
+                        <id>jar-deploy</id>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                        <configuration>
+                            <message>Library of ${project.version}</message>
+                            <noJekyll>true</noJekyll>
+                            <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+                            <branch>refs/heads/mvn-repo</branch>
+                            <includes><include>**/*</include></includes>
+                            <merge>true</merge>
+                            <repositoryName>modeler-lda</repositoryName>
+                            <repositoryOwner>librairy</repositoryOwner>
+                            <server>github</server>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>site-deploy</id>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>site-deploy</phase>
+                        <configuration>
+                            <branch>refs/heads/doc</branch>
+                            <message>Building site for ${project.version}</message>
+                            <noJekyll>true</noJekyll>
+                            <merge>true</merge>
+                            <repositoryName>modeler-lda</repositoryName>
+                            <repositoryOwner>librairy</repositoryOwner>
+                            <server>github</server>
+                            <path>report</path>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.9</version>
+            </plugin>
+
+
+            <!-- WAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven.war.plugin.version}</version>
+                <configuration>
+                    <warName>${project.build.finalName}</warName>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/webapp/META-INF</directory>
+                            <filtering>true</filtering>
+                            <targetPath>META-INF</targetPath>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+
+            <!-- Attached JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven.jar.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>lib</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- allows running this example with mvn jetty:run -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty.plugin.version}</version>
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <webApp>
+                        <contextPath>/modeler-lda</contextPath>
+                    </webApp>
+                    <useTestScope>true</useTestScope>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>LIBRAIRY_HOME</name>
+                            <value>.</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>COLUMN_DB_HOST</name>
+                            <value>wiig.dia.fi.upm.es</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>COLUMN_DB_PORT</name>
+                            <value>5011</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>DOCUMENT_DB_HOST</name>
+                            <value>wiig.dia.fi.upm.es</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>DOCUMENT_DB_PORT</name>
+                            <value>5021</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>GRAPH_DB_HOST</name>
+                            <value>wiig.dia.fi.upm.es</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>GRAPH_DB_PORT</name>
+                            <value>5030</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>MESSAGE_BROKER_HOST</name>
+                            <value>wiig.dia.fi.upm.es</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>MESSAGE_BROKER_PORT</name>
+                            <value>5041</value>
+                        </systemProperty>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+
+            <!-- Docker Plugin -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.2.3</version>
+                <configuration>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.war</include>
+                        </resource>
+                    </resources>
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                    </imageTags>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${project.build.directory}/mvn-repo</url>
+        </repository>
+    </distributionManagement>
+
+
+    <repositories>
+
+        <!-- External Libraries -->
+        <repository>
+            <id>external-libs</id>
+            <url>https://raw.github.com/cbadenes/external-libs/mvn-repo/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+
+        <!-- Test Utils Repository -->
+        <repository>
+            <id>test-utils</id>
+            <url>https://raw.github.com/cbadenes/test-utils/mvn-repo/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+
+        <!-- Librairy Repository -->
+        <repository>
+            <id>librairy-mvn-repo</id>
+            <url>https://raw.github.com/librairy/boot/mvn-repo/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+
+    <!-- Report -->
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.8</version>
+                <configuration>
+                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                </configuration>
+            </plugin>
+            <!-- Provides static analysis on source files -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.17</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>checkstyle</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+                <configuration>
+                    <configLocation>https://raw.githubusercontent.com/librairy/resources/master/code/rules.xml</configLocation>
+                </configuration>
+            </plugin>
+            <!-- Provides static analysis on source files -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.3</version>
+                <configuration>
+                    <xmlOutput>true</xmlOutput>
+                </configuration>
+            </plugin>
+            <!-- Provides code coverage during Unit Test (test) phase -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.7</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>cobertura</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <!--  Bundles JavaDocs into the reporting structure -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+                <configuration>
+                    <failOnError>false</failOnError>
+                </configuration>
+            </plugin>
+            <!-- Searches source code for specific words like TODO and FIXME, then collates them into a report per project -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>taglist-maven-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <tagListOptions>
+                        <tagClasses>
+                            <tagClass>
+                                <displayName>Todo Work</displayName>
+                                <tags>
+                                    <tag>
+                                        <matchString>todo</matchString>
+                                        <matchType>ignoreCase</matchType>
+                                    </tag>
+                                    <tag>
+                                        <matchString>FIXME</matchString>
+                                        <matchType>exact</matchType>
+                                    </tag>
+                                </tags>
+                            </tagClass>
+                        </tagClasses>
+                    </tagListOptions>
+                </configuration>
+            </plugin>
+            <!-- -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.2</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>dependency-updates-report</report>
+                            <report>plugin-updates-report</report>
+                            <report>property-updates-report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
+
+</project>
+
