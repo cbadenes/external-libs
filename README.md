@@ -3,13 +3,13 @@
 ```xml
 mvn install:install-file -Dfile=<file-path> -DgroupId=<group-id> -DartifactId=<artifact-id> -Dversion=<version> -Dpackaging=jar
 ```
-##### 2) Copy the folder structure from your local repository to this project: 
+##### 2) Copy the folder structure from your local repository to this project:
 ```xml
 cp -r <home>/.m2/repository/<group-id> <group-id>/
 ```
-##### 3) Commit the changes: 
+##### 3) Commit the changes:
 ```xml
-git commit -a .
+git add .
 git commit -m "new library"
 git push origin mvn-repo
 ```  
