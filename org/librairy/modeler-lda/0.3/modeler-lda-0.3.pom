@@ -855,7 +855,7 @@
         <dependency>
             <groupId>org.librairy</groupId>
             <artifactId>librairy-boot</artifactId>
-            <version>${librairy.version}</version>
+            <version>0.5</version>
         </dependency>
 
 		<!-- Ressist Dependency -->
