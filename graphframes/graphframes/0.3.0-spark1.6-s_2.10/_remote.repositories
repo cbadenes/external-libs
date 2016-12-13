@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Tue Dec 13 11:20:55 CET 2016
+graphframes-0.3.0-spark1.6-s_2.10.jar>=
+graphframes-0.3.0-spark1.6-s_2.10.pom>=
